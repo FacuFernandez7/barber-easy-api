@@ -2,13 +2,11 @@ package com.barbereasy.barbereasyapi.controller;
 
 import com.barbereasy.barbereasyapi.model.Catalog;
 import com.barbereasy.barbereasyapi.service.CatalogService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class CatalogController {
@@ -56,8 +54,18 @@ public class CatalogController {
   }
 
   @PostMapping("/catalog")
-  public void saveNewCatalog(@RequestBody Catalog catalog) {
-    catalogService.saveCatalog(catalog);
+  public Catalog saveServiceFromCatalog(@RequestBody Catalog catalog) {
+    return catalogService.saveCatalog(catalog);
+  }
+
+  @PutMapping("/catalog/{id}")
+  public Catalog updateCatalog(@PathVariable("id") UUID catalogId, @RequestBody Catalog catalog) {
+    return catalogService.updateCatalog(catalogId, catalog);
+  }
+
+  @DeleteMapping("/catalog/{id}")
+  public void deleteServiceFromCatalog(@PathVariable("id") UUID catalogId) {
+    catalogService.deleteService(catalogId);
   }
 
 }
