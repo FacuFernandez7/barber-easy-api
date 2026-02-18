@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
-@Table(name = "catalog", schema = "public")
-public class Catalog {
+@Table(name = "barber_service", schema = "public")
+public class BarberService {
 
   @Id
   @GeneratedValue
@@ -26,7 +26,7 @@ public class Catalog {
   @Column(name = "time_on_minutes")
   private BigDecimal timeOnMinutes;
 
-  public Catalog() {}
+  public BarberService() {}
 
   public UUID getId() {
     return id;

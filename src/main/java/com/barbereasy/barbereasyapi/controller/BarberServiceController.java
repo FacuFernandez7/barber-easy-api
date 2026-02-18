@@ -1,25 +1,24 @@
 package com.barbereasy.barbereasyapi.controller;
 
-import com.barbereasy.barbereasyapi.model.Catalog;
-import com.barbereasy.barbereasyapi.service.CatalogService;
+import com.barbereasy.barbereasyapi.model.BarberService;
+import com.barbereasy.barbereasyapi.service.BarberServiceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @RestController
-public class CatalogController {
+public class BarberServiceController {
 
-  private final CatalogService catalogService;
+  private final BarberServiceService barberService;
 
-  public CatalogController(CatalogService catalogService) {
-    this.catalogService = catalogService;
+  public BarberServiceController(BarberServiceService barberService) {
+    this.barberService = barberService;
   }
 
-  @GetMapping("/catalog")
-  public List<Catalog> getAllUsers() {
-    return catalogService.getAllCatalogs();
+  @GetMapping("/service")
+  public List<BarberService> getAllServices() {
+    return barberService.getAllServices();
     /*List<Map<String, Object>> servicios = new ArrayList<>();
 
     servicios.add(Map.of(
@@ -53,19 +52,19 @@ public class CatalogController {
     return servicios;*/
   }
 
-  @PostMapping("/catalog")
-  public Catalog saveServiceFromCatalog(@RequestBody Catalog catalog) {
-    return catalogService.saveCatalog(catalog);
+  @PostMapping("/service")
+  public BarberService saveService(@RequestBody BarberService service) {
+    return barberService.saveService(service);
   }
 
-  @PutMapping("/catalog/{id}")
-  public Catalog updateCatalog(@PathVariable("id") UUID catalogId, @RequestBody Catalog catalog) {
-    return catalogService.updateCatalog(catalogId, catalog);
+  @PutMapping("/service/{id}")
+  public BarberService updateService(@PathVariable("id") UUID serviceId, @RequestBody BarberService service) {
+    return barberService.updateService(serviceId, service);
   }
 
-  @DeleteMapping("/catalog/{id}")
-  public void deleteServiceFromCatalog(@PathVariable("id") UUID catalogId) {
-    catalogService.deleteService(catalogId);
+  @DeleteMapping("/service/{id}")
+  public void deleteServiceFromCatalog(@PathVariable("id") UUID serviceId) {
+    barberService.deleteService(serviceId);
   }
 
 }
