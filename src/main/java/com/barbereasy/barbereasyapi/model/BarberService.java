@@ -1,8 +1,11 @@
 package com.barbereasy.barbereasyapi.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -25,6 +28,14 @@ public class BarberService {
 
   @Column(name = "time_on_minutes")
   private BigDecimal timeOnMinutes;
+
+  @CreationTimestamp
+  @Column(name = "created_at", updatable = false)
+  private LocalDateTime createdAt;
+
+  @UpdateTimestamp
+  @Column(name = "updated_at")
+  private LocalDateTime updatedAt;
 
   public BarberService() {}
 
@@ -66,5 +77,13 @@ public class BarberService {
 
   public void setTimeOnMinutes(BigDecimal timeOnMinutes) {
     this.timeOnMinutes = timeOnMinutes;
+  }
+
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
+  }
+
+  public LocalDateTime getUpdatedAt() {
+    return updatedAt;
   }
 }
